@@ -15,8 +15,8 @@ public class Driver {
         DummyModel obj = new DummyModel();
         obj.train(ArrayList<DataPoint> train);
         obj.test(ArrayList<DataPoint> test);
-        obj.getAccuracy(ArrayList<DataPoint> data);
-        obj.getPrecision(ArrayList<DataPoint> data);
+        obj.getAccuracy(ArrayList<DataPoint> test);
+        obj.getPrecision(ArrayList<DataPoint> test);
         
     }
     private static void initAndShowGUI(){
