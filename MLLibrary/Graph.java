@@ -42,6 +42,10 @@ public class Graph extends JPanel {
     // TODO: Add a private KNNModel variable
 
     private KNNModel mod;
+    public int truePositive = 0;
+    public int falsePositive = 0;
+    public int trueNegative = 0;
+    public int falseNegative = 0;
 
     ArrayList<DataPoint> data = new ReadData("titanic.csv").getData();
 	/**
@@ -50,7 +54,7 @@ public class Graph extends JPanel {
     public Graph(List<DataPoint> testData, List<DataPoint> trainData) {
         this.data = testData;
         // TODO: instantiate a KNNModel variable
-        mod = new KNNModel(3);
+        mod = new KNNModel(4);
         // TODO: Run train with the trainData
         mod.train((ArrayList<DataPoint>) trainData);
     }
@@ -133,12 +137,35 @@ public class Graph extends JPanel {
             int ovalH = pointWidth;
 
             // TODO: Depending on the type of data and how it is tested, change color here.
-
             // You need to test your data here using the model to obtain the test value 
             // and compare against the true label.
-            
-            g2.setColor(pointColor);
-            g2.fillOval(x, y, ovalW, ovalH);
+            DataPoint dataPoint = data.get(i);
+            String point = mod.test(dataPoint);
+            if (point.getLabel().equals("1") && dataPoint.getLabel().equals("1")) {
+                truePositive++;
+                g2.setColor(blue);
+                g2.fillOval(x, y, ovalW, ovalH);
+            }
+            if (point.getLabel().equals("1") && dataPoint.getLabel().equals("0")) {
+                falsePositive++;
+                g2.setColor(cyan);
+                g2.fillOval(x, y, ovalW, ovalH);
+            }
+            if (point.getLabel().equals("0") && dataPoint.getLabel().equals("1")) {
+                falseNegative;
+                g2.setColor(yellow);
+                g2.fillOval(x, y, ovalW, ovalH);
+            }
+            if (point.getLabel().equals("0") && dataPoint.getLabel().equals("0")) {
+                trueNegative++;
+                g2.setColor(red);
+                g2.fillOval(x, y, ovalW, ovalH);
+            }
+            else {
+                g2.setColor(pointColor);
+                g2.fillOval(x, y, ovalW, ovalH);
+            }
+
         }
 
     }
@@ -211,6 +238,7 @@ public class Graph extends JPanel {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
     }
       
     /* The main method runs createAndShowGui*/
