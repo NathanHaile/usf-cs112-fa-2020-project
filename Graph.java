@@ -246,18 +246,18 @@ public class Graph extends JPanel {
 
         JLabel majorityValue = new JLabel("Choose the majority value", JLabel.center);
         sliderLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JSlider slider = new JSlider(JSlider.HORIZONTAL, Min, Max, Init);
+        JSlider valueSlider = new JSlider(JSlider.HORIZONTAL, Min, Max, Init);
 
-        slider.setMajorTickSpacing(5);
-        slider.seMinorTickSpacing(1);
-        slider.setPaintTicks(true);
-        slider.setSnapToTicks(true);
-        slider.setPaintLabels(true);
+        valueSlider.setMajorTickSpacing(5);
+        valueSlider.seMinorTickSpacing(1);
+        valueSlider.setPaintTicks(true);
+        valueSlider.setSnapToTicks(true);
+        valueSlider.setPaintLabels(true);
 
         JButton runButton = new JButton("Run Test");
         runButton.addActionListener(new ActionListener() {
             public void actionPreformed(ActionEvent evt) {
-                int sliderVal = slider.getvalue();
+                int sliderVal = valueSlider.getvalue();
                 int multVal = (sliderVal*2)+1;
                 newKNN = new KNNModel(multVal);
                 String output = newKNN.test(datapoint);
