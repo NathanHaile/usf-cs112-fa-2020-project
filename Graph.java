@@ -231,9 +231,9 @@ public class Graph extends JPanel {
         // Feel free to change the size of the panel
         mainPanel.setPreferredSize(new Dimension(700, 600));
 
-        final int Init = 5;
-        final int Min = 2;
-        final int Max = 25;
+        final int INIT = 5;
+        final int MIN = 2;
+        final int MAX = 25;
 
         /* Second Panel */
         Jpanel panel2 = new Jpanel();
@@ -246,13 +246,18 @@ public class Graph extends JPanel {
 
         JLabel majorityValue = new JLabel("Choose the majority value", JLabel.center);
         sliderLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JSlider valueSlider = new JSlider(JSlider.HORIZONTAL, Min, Max, Init);
+        JSlider valueSlider = new JSlider(JSlider.HORIZONTAL, MIN, MAX, INIT);
 
         valueSlider.setMajorTickSpacing(5);
         valueSlider.seMinorTickSpacing(1);
         valueSlider.setPaintTicks(true);
         valueSlider.setSnapToTicks(true);
         valueSlider.setPaintLabels(true);
+        valueSlider.setBorder(BorderFactory.createEmptyBorder(0,0,10,0));
+        Font font = new Font("Serif", Font.ITALIC, 15);
+        valueSlider.setFont(font);
+        valueSlider.setAligmentX(Coponent.CENTER_ALIGNMENT);
+
 
         JButton runButton = new JButton("Run Test");
         runButton.addActionListener(new ActionListener() {
@@ -270,7 +275,10 @@ public class Graph extends JPanel {
         JFrame frame = new JFrame("CS 112 Lab Part 3");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(mainPanel);
-        frame.getConentPane().add(panel2);
+        frame.getContentPane().add(panel2);
+        frame.getContentPane().add(majorityValue);
+        frame.getContentPane().add(valueSlider);
+        fraim.getContentPane().add(runButton);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
